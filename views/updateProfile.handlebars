@@ -1,0 +1,36 @@
+<h1 style="text-align:center;font-size:50px;">
+		Update Your Profile
+		<br>
+	</h1>
+
+<div class="container">
+
+<form role="form" method="post" action="/updateProfile">
+		<div class="form-group">
+			<label for="photo"> Profile Photo URL: </label>
+  			<input type="text" class="form-control" name="photo" id="photo" placeholder="Enter Profile Photo URL">
+		</div>
+
+		<div class="form-group">
+			<label for="userdescription"> Describe Yourself: </label>
+  			<input type="userdescription" class="form-control" name="userdescription" id="userdescription" placeholder="Enter a short description of yourself.">
+		</div>
+
+		<div class="form-group">
+				<label for="userexperience"> Hiking Experience: </label>	
+				<select name="userexperience" id="userexperience" style="font-size:15px">
+					<option value="choose"> Choose One </option>
+					<option value="zero"> 0 - No Experience </option>
+					<option value="one"> 1 - Minimal Day Hike Experience</option>
+					<option value="two"> 2 - Long Day Hike Experience</option>
+					<option value="three"> 3 - Weekend Backpacking Experience </option>
+					<option value="four"> 4 - Multiday Backpacking Experience </option>
+					<option value="five"> 5 - Week or more Experience </option>
+				</select>
+		</div>
+
+		<button type="submit" class="btn btn-default">Update Profile</button>
+		<br>
+
+</form>
+<div>
