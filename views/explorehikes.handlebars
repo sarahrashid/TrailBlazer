@@ -1,25 +1,23 @@
 <body style = "background-color:  #e6eeff;">
 
 <div class="page-header">
-<h1 style="text-align:center;font-size:50px;color:#003cb3
+<h1 style="text-align:center;font-size:50px; color:#003cb3
 "> Explore Hikes 
 </div>
 
-<div class= "container"> 
+<div class= "container" style = "background-color:  #e6eeff;"> 
     <form method="get" action="/postTrail">
       <button type="submit" class="btn btn-default btn-sml btn-block" href="/postTrail" > Click here to post! </button>
     </form>
-</div>
 
 <br> <br>
 
 {{#each trails}}
 <div align="center" class="well">
-	
 	     <p style="font-size:15px;"> 
 	      	<strong> Trail Picture: </strong>
 	      	<br>
-	      		<img src="{{imageUrl}}">
+	      		<img style="width: 100%;" src="{{imageUrl}}">
 	    	<br>
 	      	<br>
 	       <strong> Trail Location: </strong>
@@ -38,4 +36,6 @@
 		</p>
 </div>
 {{/each}}
+
+</div>
 </body>
