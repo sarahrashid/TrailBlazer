@@ -1,3 +1,22 @@
 <div class="page-header container">
-<h1 style="text-align:center;font-size:50px;color:#003cb3"> My Profile
+<h1 style="text-align:center;font-size:50px;color:#003cb3"> My Profile </h1>
 </div>
+
+
+<div class="container" align="center">
+<h3 style="text-align:left;font-size:25px">
+	
+	Profile Picture:
+	<br> <br>
+	Username: {{username}}
+	<br> <br>
+	Name: {{firstname}} {{lastnamse}}
+	<br> <br>
+	Gender: {{gender}}
+</h3>
+
+
+
+<form method="get" action="/updateProfile">
+ 	<button type="submit" class="btn btn-primary btn-sml btn-block" href="/updateProfile" >Update Profile</button>
+ </form>
