@@ -218,17 +218,6 @@ app.get('/myprofile', function(req,res) {
 					}
 					else {
 						res.render('myprofile', {"registration": result});
-						/*console.log('Retrieving all trails from database');
-						var collection = db.collection('trails');
-						collection.find({"username":user}).toArray(function(err, result) {
-							if (err){
-								console.log(err);
-							}
-							else {
-								res.render('myprofile', {"trails": result});
-							}
-						});
-						*/
 					}
 				db.close();
 				});
