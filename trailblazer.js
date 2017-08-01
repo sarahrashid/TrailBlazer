@@ -27,7 +27,7 @@ app.use(session({
 	// Doesn't store data if a session is new and hasn't been modified
 	saveUninitialized: true,
 	// The secret string used to sign the session id cookie
-	secret: credentials.cookieSecret,
+	secret: credentials.cookieSecret
 }));
 
 
@@ -93,6 +93,7 @@ app.post('/postTrail', function (req, res) {
 			console.log('Posted to database');
 			var collection = db.collection('trails');
 			var postTrail = { 
+				username: req.cookies.username,
 				imageUrl: req.body.picture,
 				trailLocation: req.body.trailLocation,
 				trailDescription: req.body.trailDescription,
@@ -125,28 +126,32 @@ app.get('/about',function(req,res){
 	res.render('about');
 });
 
-app.get('/explorehikes', function(req,res){
-	var MongoClient = mongodb.MongoClient;
-	var url = 'mongodb://localhost:27017/trailblazer';
-	MongoClient.connect(url, function(err, db) {
-		if (err) {
-			console.log('Cannot post to database', err);
-		}
-		else {
-			console.log('Retrieving all trails from database');
-			var collection = db.collection('trails');
-			collection.find().toArray(function(err, result) {
-				if (err){
-					console.log(err);
-				}
-				else {
-					
-					res.render('explorehikes', {trails: result});
-				}
-				db.close();
-			});
-		}
-	});
+app.get('/explorehikes', function(req,res) {
+	if(req.cookies.username) {
+		var MongoClient = mongodb.MongoClient;
+		var url = 'mongodb://localhost:27017/trailblazer';
+		MongoClient.connect(url, function(err, db) {
+			if (err) {
+				console.log('Cannot post to database', err);
+			}
+			else {
+				console.log('Retrieving all trails from database');
+				var collection = db.collection('trails');
+				collection.find().toArray(function(err, result) {
+					if (err){
+						console.log(err);
+					}
+					else {
+						
+						res.render('explorehikes', {trails: result});
+					}
+					db.close();
+				});
+			}
+		});
+	} else {
+		res.render('login');
+	}
 });
 
 app.get('/login',function(req,res){
@@ -173,6 +178,7 @@ app.post('/checklogin', function(req,res) {
 				if (err) {
 					res.send(err);
 				} else if (result.length) {
+					res.cookie('username', a, {expire : new Date() + 9999});
 					res.redirect("/myprofile");
 				} else {
 					res.send('Invalid login');
