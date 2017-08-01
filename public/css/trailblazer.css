@@ -17,6 +17,7 @@ body {
 	color:white;
 	font-size:20px;
 	background-image:url('/img/PCT1.jpg');
+	background-size: 100%;
 	background-position: right;
 	background-attachment: fixed;
 	margin:75px;
@@ -24,9 +25,21 @@ body {
 
 .signup {
 	text-align:left;
+	color:white;
 	font-size:20px;
 	background-image:url('/img/backgroundregistration.jpg');
+	background-size: 100%;
 	background-position: left top;
+	background-attachment: fixed;
+	margin:75px;
+}
+
+.postTrail {
+	color:white;
+	font-size:20px;
+	background-image:url('/img/PCT4.jpg');
+	background-size: 100%;
+	background-position: right;
 	background-attachment: fixed;
 	margin:75px;
 }
