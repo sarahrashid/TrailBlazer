@@ -1,3 +1,5 @@
+<body class="updateProfile">
+
 <h1 style="text-align:center;font-size:50px;">
 		Update Your Profile
 		<br>
@@ -6,18 +8,30 @@
 <div class="container">
 
 	<form role="form" method="post" action="/updateProfile">
-		<div class="form-group">
-			<label for="profPhoto"> Profile Photo URL: </label>
-  			<input type="text" class="form-control" name="profPhoto" id="profPhoto" placeholder="Enter Profile Photo URL">
-		</div>
-
-		<div class="form-group">
-			<label for="userdescription"> Describe Yourself: </label>
-  			<input type="userdescription" class="form-control" name="userdescription" id="userdescription" placeholder="Enter a short description of yourself.">
-		</div>
-
-		<div class="form-group">
-				<label for="userexperience"> Hiking Experience: </label>	
+		{{#each registration}}
+		<div class="row">
+			<div class="col-sm-4">
+				<img class="img-responsive" src="{{profPhoto}}">
+				<br> 
+				<div class="form-group">
+					<label for="profPhoto"> Profile Photo URL: </label>
+	  				<input type="text" class="form-control" name="profPhoto" id="profPhoto" placeholder="Enter Profile Photo URL">
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<label for="username"> Username:</label>
+				<input type="text" class="form-control" name="username" id="username" placeholder="{{username}}">
+				<br> 
+				<label for="name"> Name:</label>
+				<input type="text" class="form-control" name="name" id="name" placeholder="{{firstname}} {{lastname}}">
+				<br> 
+				<label for="email"> Email:</label>
+				<input type="text" class="form-control" name="email" id="email" placeholder="{{email}}">
+				<br>
+				<label for="userdescription"> Describe Yourself: </label>
+  				<input type="text" class="form-control" name="userdescription" id="userdescription" placeholder="Enter a short description of yourself.">
+  				<br>
+  				<label for="userexperience"> Hiking Experience: </label>	
 				<select name="userexperience" id="userexperience" style="font-size:15px">
 					<option value="choose"> Choose One </option>
 					<option value="zero"> 0 - No Experience </option>
@@ -27,10 +41,13 @@
 					<option value="four"> 4 - Multiday Backpacking Experience </option>
 					<option value="five"> 5 - Week or more Experience </option>
 				</select>
+			</div>
 		</div>
+		{{/each}}
 
 		<button type="submit" class="btn btn-default">Update Profile</button>
 		<br>
 	</form>
 
 <div>
+</body>

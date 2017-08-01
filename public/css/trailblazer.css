@@ -8,12 +8,14 @@
 
 body {
 	text-align: left;
+	font-family: helvetica;
 	background-position: left top;
 	background-attachment: fixed;
 }
 
 .login {
 	text-align:left;
+	font-family: helvetica;
 	color:white;
 	font-size:20px;
 	background-image:url('/img/PCT1.jpg');
@@ -24,8 +26,9 @@ body {
 
 .signup {
 	text-align:left;
-	color:white;
 	font-size:20px;
+	font-family: helvetica;
+	color:white;
 	background-image:url('/img/backgroundregistration.jpg');
 	background-size: 100%;
 	background-position: left top;
@@ -35,6 +38,7 @@ body {
 .postTrail {
 	color:white;
 	font-size:20px;
+	font-family: helvetica;
 	background-image:url('/img/PCT4.jpg');
 	background-size: 100%;
 	background-position: right;
@@ -44,7 +48,26 @@ body {
 .explorehikes {
 	color:white;
 	font-size:20px;
+	font-family: helvetica;
 	background-image:url('/img/PCT4.jpg');
+	background-size: 100%;
+	background-position: right;
+	background-attachment: fixed;
+}
+
+.myprofile {
+	font-size:20px;
+	font-family: helvetica;
+	text-align:left;
+	background-size: 100%;
+	background-position: right;
+	background-attachment: fixed;
+}
+
+.updateProfile {
+	font-size:20px;
+	font-family: helvetica;
+	text-align:left;
 	background-size: 100%;
 	background-position: right;
 	background-attachment: fixed;
@@ -63,6 +86,7 @@ body {
 
 #bannertitle {
 	font-size: 90px;
+	font-family: helvetica;
 	text-align: center;
 	color: white;
 	text-shadow: #444 0 1px 1px;
@@ -70,6 +94,7 @@ body {
 
 p {
 	font-size: 25px;
+	font-family: helvetica;
 }
 
 ul {
@@ -89,6 +114,7 @@ li a, .dropbtn {
 	display: inline-block;
 	color: white;
 	text-align: center;
+	font-family: helvetica;
 	padding: 14px 16px;
 	text-decoration: none;
 }

@@ -153,7 +153,6 @@ app.get('/explorehikes', function(req,res) {
 						console.log(err);
 					}
 					else {
-						
 						res.render('explorehikes', {trails: result});
 					}
 					db.close();
@@ -219,12 +218,24 @@ app.get('/myprofile', function(req,res) {
 					}
 					else {
 						res.render('myprofile', {"registration": result});
+						/*console.log('Retrieving all trails from database');
+						var collection = db.collection('trails');
+						collection.find({"username":user}).toArray(function(err, result) {
+							if (err){
+								console.log(err);
+							}
+							else {
+								res.render('myprofile', {"trails": result});
+							}
+						});
+						*/
 					}
-					db.close();
+				db.close();
 				});
 			}
 		});
-	} else {
+	} 
+	else {
 		res.render('login');
 	}
 });
@@ -234,7 +245,28 @@ app.get('/myprofile',function(req,res){
 });
 
 app.get('/updateProfile',function(req,res){
-	res.render('updateProfile');
+	if(req.cookies.username) {
+		var MongoClient = mongodb.MongoClient;
+		var url = 'mongodb://localhost:27017/trailblazer';
+		MongoClient.connect(url, function(err, db) {
+			if (err) {
+				console.log('Cannot post to database', err);
+			}
+			else {
+				console.log('Retrieving registration information from database');
+				var collection = db.collection('registration');
+				var user= req.cookies.username;
+				collection.find({"username":user}).toArray(function(err, result) {
+					if (err){
+						console.log(err);
+					}
+					else {
+						res.render('updateProfile', {"registration": result});
+					}
+				});
+			};
+		});
+	}
 });
 
 app.post('/updateProfile', function(req,res) {
@@ -250,7 +282,7 @@ app.post('/updateProfile', function(req,res) {
 			var user= req.cookies.username;
 			collection.update(
 				{username: "user"},
-				{ $set: {"profPhoto":"req.body.profPhoto","userdescription":"req.body.userdescription",
+				{$set: {"profPhoto":"req.body.profPhoto","userdescription":"req.body.userdescription",
 					"userexperience":"req.body.userexperience",}
 				});
 			res.redirect("/myprofile");
@@ -267,7 +299,7 @@ app.use(function(req, res, next){
 // Delete a cookie
 app.get('/deletecookie', function(req, res){
 	res.clearCookie('username');
-	res.send('Username Cookie Deleted');
+	res.redirect("/");
 });
 
 //Session function

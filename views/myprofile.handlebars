@@ -1,30 +1,65 @@
-<div class="page-header container">
-<h1 style="text-align:center;font-size:50px;color:#003cb3"> My Profile </h1>
+<body class="myprofile">
+
+	<h1 style="text-align:center;font-size:50px;">
+		My Profile
+		<br>
+	</h1>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<p style="font-size:20px;">
+				{{#each registration}}
+				<img class="img-responsive" src="{{profPhoto}}">
+				<br> 
+				Username: {{username}}
+				<br> 
+				Name: {{firstname}} {{lastname}}
+				<br> 
+				Hiking Experience: {{userexperience}}
+				<br>
+				{{userdescription}}
+				<br>
+				{{/each}}
+			</p>
+		</div>
+		<div class="col-sm-8">
+			{{#each trails}}
+			<div class="well">
+	     		<p style="font-size:15px;color:black;"> 
+	     			Posted by <strong>{{username}}</strong>
+	      			<br>
+	      			<br>
+	      			<img style="width: 100%;" src="{{imageUrl}}">
+	    			<br>
+	      			<br>
+	       			<strong> Trail Location: </strong>
+	       			<br>
+	      			{{trailLocation}}
+	      			<br>
+	      			<br>
+	      			<strong> Trail Description: </strong>
+	       			<br>
+	       			{{trailDescription}}
+	      			<br>
+	      			<br>
+	      			<strong> Reccomendations for others: </strong>
+	       			<br>
+	       			{{trailReccomendation}}
+				</p>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+
+	<form method="get" action="/updateProfile">
+ 		<button type="submit" class="btn btn-default btn-sml btn-block" href="/updateProfile"> Update Profile</button>
+	</form>
+	<br>
+
+	<form method="get" action="/deletecookie">
+  	  <button type="submit" class="btn btn-default btn-sml btn-block" href="/deletecookie"> Logout</button>
+  	</form>
 </div>
 
-
-<div class="container" align="center">
-<h3 style="text-align:left;font-size:25px">
-
-	{{#each registration}}
-	Profile Picture: {{profPhoto}}
-	<br> 
-	Username: {{username}}
-	<br> 
-	Name: {{firstname}} {{lastname}}
-	<br> 
-	Hiking Experience: {{userexperience}}
-	<br>
-	{{userdescription}}
-	<br>
-	{{/each}}
-</h3>
-
-<form method="get" action="/updateProfile">
- 	<button type="submit" class="btn btn-default btn-sml btn-block" href="/updateProfile"> Update Profile</button>
-</form>
-<br>
-
-<form method="get" action="/deletecookie">
-    <button type="submit" class="btn btn-default btn-sml btn-block" href="/deletecookie"> Logout</button>
-  	</form>
+<body>
