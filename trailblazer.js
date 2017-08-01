@@ -69,16 +69,27 @@ app.post('/register', function(req,res) {
 				lastname: req.body.lastname, username: req.body.username,
 				email: req.body.email, pwd: req.body.pwd, gender: req.body.gender
 			};
-			collection.insert([signup], function (err, result) {
-				if (err) {
+			collection.find({userame:signup.username}).toArray(function(err,result){
+				if(err){
 					console.log(err);
+				} 
+				else if(result.length){
+					db.close();
+					res.send('Username already taken.');
 				}
-				else {
-					res.redirect("/myprofile")
+				else{
+					collection.insert([signup], function (err, result) {
+						if (err) {
+						console.log(err);
+						}
+						else {
+						res.redirect("/myprofile")
+						}
+						db.close();
+					});
 				}
-				db.close();
-			});
-		}
+			})
+		};
 	});
 });
 
@@ -201,13 +212,13 @@ app.get('/myprofile', function(req,res) {
 			else {
 				console.log('Retrieving registration information from database');
 				var collection = db.collection('registration');
-				collection.find().toArray(function(err, result) {
+				var user= req.cookies.username;
+				collection.find({"username":user}).toArray(function(err, result) {
 					if (err){
 						console.log(err);
 					}
 					else {
-						
-						res.render('myprofile', {registration: result});
+						res.render('myprofile', {"registration": result});
 					}
 					db.close();
 				});
@@ -222,9 +233,47 @@ app.get('/myprofile',function(req,res){
 	res.render('myprofile');
 });
 
+app.get('/updateProfile',function(req,res){
+	res.render('updateProfile');
+});
+
+app.post('/updateProfile', function(req,res) {
+	var user= req.cookies.username;
+	var MongoClient = mongodb.MongoClient;
+	var url = 'mongodb://localhost:27017/trailblazer';
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			console.log('Unable to connect to the Server:', err);
+		}
+		else {
+			console.log('Connected to server');
+			var collection = db.collection('registration');
+			var userprofile = {
+				profphoto: req.body.photo,
+				userdescription: req.body.userdescription, 
+				userexperience: req.body.userexperience,
+			};
+			collection.updateOne(
+				{username: "user"},
+				{
+					$set: {"profPhoto":"req.body.profPhoto","userdescription":"req.body.userdescription",
+					"userexperience":"req.body.userexperience",}
+				});
+			res.redirect("/myprofile");
+		}
+		db.close();
+	});
+});
+
 app.use(function(req, res, next){
 	console.log('Looking for URL : ' + req.url);
 	next();
+});
+
+// Delete a cookie
+app.get('/deletecookie', function(req, res){
+	res.clearCookie('username');
+	res.send('Username Cookie Deleted');
 });
 
 //Session function

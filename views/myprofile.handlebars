@@ -5,18 +5,26 @@
 
 <div class="container" align="center">
 <h3 style="text-align:left;font-size:25px">
-	
-	Profile Picture:
-	<br> <br>
+
+	{{#each registration}}
+	Profile Picture: {{profPhoto}}
+	<br> 
 	Username: {{username}}
-	<br> <br>
+	<br> 
 	Name: {{firstname}} {{lastname}}
-	<br> <br>
-	Gender: {{gender}}
+	<br> 
+	Hiking Experience: {{userexperience}}
+	<br>
+	{{userdescription}}
+	<br>
+	{{/each}}
 </h3>
 
-
-
 <form method="get" action="/updateProfile">
- 	<button type="submit" class="btn btn-primary btn-sml btn-block" href="/updateProfile" >Update Profile</button>
- </form>
+ 	<button type="submit" class="btn btn-default btn-sml btn-block" href="/updateProfile"> Update Profile</button>
+</form>
+<br>
+
+<form method="get" action="/deletecookie">
+    <button type="submit" class="btn btn-default btn-sml btn-block" href="/deletecookie"> Logout</button>
+  	</form>

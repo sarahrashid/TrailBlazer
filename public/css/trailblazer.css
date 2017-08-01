@@ -20,7 +20,6 @@ body {
 	background-size: 100%;
 	background-position: right;
 	background-attachment: fixed;
-	margin:75px;
 }
 
 .signup {
@@ -31,7 +30,6 @@ body {
 	background-size: 100%;
 	background-position: left top;
 	background-attachment: fixed;
-	margin:75px;
 }
 
 .postTrail {
@@ -41,8 +39,17 @@ body {
 	background-size: 100%;
 	background-position: right;
 	background-attachment: fixed;
-	margin:75px;
 }
+
+.explorehikes {
+	color:white;
+	font-size:20px;
+	background-image:url('/img/PCT4.jpg');
+	background-size: 100%;
+	background-position: right;
+	background-attachment: fixed;
+}
+
 
 #mycarousel {
 	width: 100%;
@@ -71,7 +78,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #003cb3;
+	background-color: #404040;
 }
 
 li {
