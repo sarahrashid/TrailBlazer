@@ -238,7 +238,6 @@ app.get('/updateProfile',function(req,res){
 });
 
 app.post('/updateProfile', function(req,res) {
-	var user= req.cookies.username;
 	var MongoClient = mongodb.MongoClient;
 	var url = 'mongodb://localhost:27017/trailblazer';
 	MongoClient.connect(url, function(err, db) {
@@ -248,15 +247,10 @@ app.post('/updateProfile', function(req,res) {
 		else {
 			console.log('Connected to server');
 			var collection = db.collection('registration');
-			var userprofile = {
-				profphoto: req.body.photo,
-				userdescription: req.body.userdescription, 
-				userexperience: req.body.userexperience,
-			};
-			collection.updateOne(
+			var user= req.cookies.username;
+			collection.update(
 				{username: "user"},
-				{
-					$set: {"profPhoto":"req.body.profPhoto","userdescription":"req.body.userdescription",
+				{ $set: {"profPhoto":"req.body.profPhoto","userdescription":"req.body.userdescription",
 					"userexperience":"req.body.userexperience",}
 				});
 			res.redirect("/myprofile");
