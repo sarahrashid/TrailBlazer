@@ -74,7 +74,7 @@ app.post('/register', function(req,res) {
 					console.log(err);
 				}
 				else {
-					res.redirect("/")
+					res.redirect("/myprofile")
 				}
 				db.close();
 			});
@@ -187,6 +187,35 @@ app.post('/checklogin', function(req,res) {
 			}); 
 		} 
 	}); 
+});
+
+
+app.get('/myprofile', function(req,res) {
+	if(req.cookies.username) {
+		var MongoClient = mongodb.MongoClient;
+		var url = 'mongodb://localhost:27017/trailblazer';
+		MongoClient.connect(url, function(err, db) {
+			if (err) {
+				console.log('Cannot post to database', err);
+			}
+			else {
+				console.log('Retrieving registration information from database');
+				var collection = db.collection('registration');
+				collection.find().toArray(function(err, result) {
+					if (err){
+						console.log(err);
+					}
+					else {
+						
+						res.render('myprofile', {registration: result});
+					}
+					db.close();
+				});
+			}
+		});
+	} else {
+		res.render('login');
+	}
 });
 
 app.get('/myprofile',function(req,res){
