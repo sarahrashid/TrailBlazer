@@ -1,26 +1,23 @@
-<body style = "background-color:  #e6eeff;">
+<body class="explorehikes">
 
-<div class="page-header">
-<h1 style="text-align:center;font-size:50px; color:#003cb3
-"> Explore Hikes 
-</div>
+<h1 style="text-align:center;font-size:50px;"> Explore Hikes 
+<br>
+</h1>
 
-<div class= "container" style = "background-color:  #e6eeff;"> 
-    <form method="get" action="/postTrail">
+<br>
+    
+<div class= "container">
+
+	<form method="get" action="/postTrail">
       <button type="submit" class="btn btn-default btn-sml btn-block" href="/postTrail" > Click here to post! </button>
     </form>
+    <br>
 
-<br> <br>
-
-{{#each trails}}
-<div align="center" class="well">
-	     <p style="font-size:15px;"> 
-	     <strong> Username: </strong>
-	       	<br>
-	      		{{username}}
+	{{#each trails}}
+	<div align="center" class="well">
+	     <p style="font-size:15px;color:black;"> 
+	     	Posted by <strong>{{username}}</strong>
 	      	<br>
-	      	<br>
-	      	<strong> Trail Picture: </strong>
 	      	<br>
 	      		<img style="width: 100%;" src="{{imageUrl}}">
 	    	<br>
@@ -39,8 +36,8 @@
 	       	<br>
 	       		{{trailReccomendation}}
 		</p>
-</div>
-{{/each}}
+	</div>
+	{{/each}}
 
 </div>
 </body>
