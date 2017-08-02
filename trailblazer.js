@@ -83,6 +83,7 @@ app.post('/register', function(req,res) {
 						console.log(err);
 						}
 						else {
+
 						res.redirect("/myprofile")
 						}
 						db.close();
@@ -234,50 +235,52 @@ app.get('/myprofile',function(req,res){
 });
 
 app.get('/updateProfile',function(req,res){
-	if(req.cookies.username) {
-		var MongoClient = mongodb.MongoClient;
-		var url = 'mongodb://localhost:27017/trailblazer';
-		MongoClient.connect(url, function(err, db) {
-			if (err) {
-				console.log('Cannot post to database', err);
-			}
-			else {
-				console.log('Retrieving registration information from database');
-				var collection = db.collection('registration');
-				var user= req.cookies.username;
-				collection.find({"username":user}).toArray(function(err, result) {
-					if (err){
-						console.log(err);
-					}
-					else {
-						res.render('updateProfile', {"registration": result});
-					}
-				});
-			};
-		});
-	}
-});
-
-app.post('/updateProfile', function(req,res) {
 	var MongoClient = mongodb.MongoClient;
 	var url = 'mongodb://localhost:27017/trailblazer';
 	MongoClient.connect(url, function(err, db) {
 		if (err) {
-			console.log('Unable to connect to the Server:', err);
+			console.log('Cannot post to database', err);
 		}
 		else {
-			console.log('Connected to server');
+			console.log('Retrieving profile information from database');
 			var collection = db.collection('registration');
 			var user= req.cookies.username;
-			collection.update(
-				{username: "user"},
-				{$set: {"profPhoto":"req.body.profPhoto","userdescription":"req.body.userdescription",
-					"userexperience":"req.body.userexperience",}
-				});
-			res.redirect("/myprofile");
-		}
-		db.close();
+			collection.find({"username":user}).toArray(function(err, result) {
+				if (err){
+					console.log(err);
+				}
+				else {
+					res.render('updateProfile', {"registration": result});
+				}
+			});
+		};
 	});
+});
+
+
+app.post('/updateProfile', function(req,res) {
+	if (req.cookies.username){
+		var MongoClient = mongodb.MongoClient;
+		var url = 'mongodb://localhost:27017/trailblazer';
+		MongoClient.connect(url, function(err, db) {
+			if (err) {
+				console.log('Unable to connect to the Server:', err);
+			}
+			else {
+				console.log('Connected to server');
+				var collection = db.collection('registration');
+				var user= req.cookies.username;
+				collection.update(
+					{username: user},
+					{$set: {profPhoto:req.body.profPhoto,userdescription:req.body.userdescription,
+						userexperience:req.body.userexperience,firstname:req.body.firstname,
+						lastname:req.body.lastname,email:req.body.email}
+					});
+				res.redirect("/myprofile");
+			}
+			db.close();
+		});
+	}
 });
 
 app.use(function(req, res, next){
