@@ -11,7 +11,7 @@
 
    		var trailDescription = document.postTrail.trailDescription.value;
     	if(trailDescription === "" ) {
-      		alert( "Please provide a a description of the trail!" ); 
+      		alert( "Please provide a description of the trail!" ); 
       		document.postTrail.trailDescription.focus();
       		return false;
    		}
@@ -33,26 +33,28 @@
 
 <div class="container">
 	<form role="form" method="post" action="/postTrail" onsubmit="return validatepostTrail()" name="postTrail" id="postTrail">
+
 		<div class="form-group">
 			<label for="picture"> Picture URL: </label>
   			<input type="text" class="form-control" name="picture" id="picture" placeholder="Enter Picture URL">
 		</div>
+
 		<div class="form-group">
 			<label for="trailLocation"> Trail Location: </label>
   			<input type="trailLocation" class="form-control" name="trailLocation" id="trailLocation" placeholder="Enter Trail Location">
 		</div>
+
 		<div class="form-group">
-		<label for="trailDescription"> Trail Description: </label>
-		<textarea type="text" class="form-control" name="trailDescription" id="trailDescription" cols="40" rows="5">
-		</textarea>
-		</div>
-		<div class="form-group">
-		<label for="trailReccomendation"> Trail Recommendations: </label>
-		<textarea type="text" class="form-control" name="trailReccomendation" id="trailReccomendation" cols="40" rows="5">
-		</textarea>
+			<label for="trailDescription"> Trail Description: </label>
+			<textarea type="text" class="form-control" name="trailDescription" id="trailDescription" cols="40" rows="5" placeholder="Enter a description of the trail: elevation, terrain, and weather specs are recommended."></textarea>
 		</div>
 
-		<button type="submit" class="btn btn-default">Post</button>
+		<div class="form-group">
+			<label for="trailReccomendation"> Trail Recommendations: </label>
+			<textarea type="text" class="form-control" name="trailReccomendation" id="trailReccomendation" cols="40" rows="5" placeholder="Enter recommendations for other hikers: what to wear, gear, and food are recommended."></textarea>
+		</div>
+
+		<button type="submit" class="btn btn-default">Create Post</button>
 		<br>
 	</form>
 </div>

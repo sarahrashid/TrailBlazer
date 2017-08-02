@@ -24,6 +24,15 @@ body {
 	background-attachment: fixed;
 }
 
+.about {
+	font-family: helvetica;
+	font-size:20px;
+	background-image:url('/img/PCT1.jpg');
+	background-size: 100%;
+	background-position: right;
+	background-attachment: fixed;
+}
+
 .signup {
 	text-align:left;
 	font-size:20px;
