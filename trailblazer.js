@@ -192,7 +192,7 @@ app.post('/checklogin', function(req,res) {
 					res.cookie('username', a, {expire : new Date() + 9999});
 					res.redirect("/myprofile");
 				} else {
-					res.send('Invalid login');
+					alert( "Please provide a valid password!" );
 				}
 				db.close();
 			}); 

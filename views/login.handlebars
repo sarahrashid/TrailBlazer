@@ -1,12 +1,31 @@
 <body class="login">
 
+<script type="text/javascript">
+	function validateLogin() {
+		var username = document.login.username.value;
+	    if(username === "" ) {
+	      alert( "Please provide your username!" ); 
+	      document.login.username.focus();
+	      return false;
+	    }
+
+	    var password = document.login.pwd.value;
+	    if(password === "" ) {
+	      alert( "Please provide your password!" ); 
+	      document.login.pwd.focus();
+	      return false;
+	    }
+	}
+
+</script>
+
 	<h1 style="text-align:center;font-size:50px;color:white">
 			Login 
 			<br>
 		</h1>
 
 <div class= "container">
-	<form role="form" method="post" action="/checklogin">
+	<form role="form" method="post" action="/checklogin" onsubmit="return validateLogin()" name="login" id="login">
 		<div class="form-group">
 			<label for="username"> Username: </label>
   			<input type="username" class="form-control" name="username" id="username" placeholder="Enter Username">
