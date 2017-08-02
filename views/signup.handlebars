@@ -1,4 +1,79 @@
+
 <body class="signup">
+
+<script type="text/javascript">
+  function validateSignup() {
+    if(document.signup.firstname.value === "") {
+      alert( "Please provide your First Name!" ); 
+      document.signup.firstname.focus();
+      return false;
+    }
+
+    if(document.signup.lastname.value === "" ) {
+      alert( "Please provide your Last Name!" ); 
+      document.signup.lastname.focus();
+      return false;
+    }
+
+    var email = document.signup.email.value;
+    if( email === "" || email.indexOf("@")===0 || email.indexOf("@")===email.length-1 || email.charAt(email.indexOf(".")+1)===".") {
+      alert( "Please provide a valid email!" ); 
+      document.signup.email.focus();
+      return false;
+    }
+
+    var wrongcharacter="~!#$%^&*()-+=` "
+    for(var i=0; i<email.length;i++){
+      if(wrongcharacter.indexOf(email.charAt(i))>=0){
+        alert( "Please provide a valid email!" ); 
+        document.signup.email.focus();
+        return false;
+      }
+    }
+
+    var username = document.signup.username.value;
+    if(username === "" ) {
+      alert( "Please provide a valid username!" ); 
+      document.signup.username.focus();
+      return false;
+    }
+
+    if (username.length < 6){
+      alert(" Your username must be 6 or more characters!");
+      document.signup.username.focus();
+      return false;
+    }
+
+    var validcharacters= "1234567890.-_qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+    for(var i=0; i < username.length; i++){
+      if (validcharacters.indexOf(username[i]) === -1){
+          alert("You can only use alphanumeric characters, periods, underscores, and dashes in your username!");
+          document.signup.username.focus();
+          return false;
+      }
+    }
+
+    var password = document.signup.pwd.value
+    if(password === "" ) {
+      alert( "Please provide a valid password!" ); 
+      document.signup.pwd.focus();
+      return false;
+    }
+
+    if (password.length < 6){
+      alert(" Your password must be 6 or more characters!");
+      document.signup.pwd.focus();
+      return false;
+    }
+
+    if(document.signup.gender.value == "choose" ) {
+      alert( "Please select a gender!"); 
+      document.signup.gender.focus();
+      return false;
+    }
+    return( true );
+  }
+</script>
 
 <h1 style="text-align:center;font-size:50px;">
     Register Now!
@@ -6,9 +81,9 @@
 </h1>
 
 <div class= "container">
-    <form method="post" action="/register">
+    <form method="post" action="/register" onsubmit="return validateSignup()" name="signup" id="signup">
         <div class="form-group">
-           <label for="firstname">First Name:</label>
+          <label for="firstname">First Name:</label>
           <input type="firstname" class="form-control" name="firstname" id="firstname" placeholder="Enter First Name">
         </div>
 
@@ -36,22 +111,23 @@
         <label for="gender"> Gender: </label> 
         <select id="gender" name="gender" style="font-size:15px;color:black;">
           <option value="choose"> Choose One </option>
-          <option value="female"> Female </option>
-          <option value="male"> Male </option>
-          <option value="other"> Other </option>
-          <option value="optout"> I'd rather not say. </option>
+          <option value="Female"> Female </option>
+          <option value="Male"> Male </option>
+          <option value="Other"> Other </option>
+          <option value="I'd rather not say."> I'd rather not say. </option>
         </select>
       </div>
 
         <div class="checkbox">
            <label style="font-size:14px"><input type="checkbox"> Remember me</label>
         </div>
+
         <button type="submit" class="btn btn-default">Submit</button>
         <br>
 
-    <a href="/login"><font size="2.75" color="white">Already have an account? Login here. </font>
-    </a>
-    <br><br>
+      <a href="/login"><font size="2.75" color="white">Already have an account? Login here. </font>
+      </a>
+      <br><br>
     </form>
 </div>
   </body>

@@ -1,12 +1,38 @@
 <body class="postTrail">
 
+<script type="text/javascript">
+	function validatepostTrail(){
+		var trailLocation = document.postTrail.trailLocation.value;
+    	if(trailLocation === "" ) {
+      		alert( "Please provide a trail location!" ); 
+      		document.postTrail.trailLocation.focus();
+      		return false;
+   		}
+
+   		var trailDescription = document.postTrail.trailDescription.value;
+    	if(trailDescription === "" ) {
+      		alert( "Please provide a a description of the trail!" ); 
+      		document.postTrail.trailDescription.focus();
+      		return false;
+   		}
+
+   		var trailReccomendation = document.postTrail.trailReccomendation.value;
+    	if(trailReccomendation === "" ) {
+      		alert( "Please provide recommendations for other hikers!" ); 
+      		document.postTrail.trailReccomendation.focus();
+      		return false;
+   		}
+	}
+
+</script>
+
 <h1 style="text-align:center;font-size:50px;">
 		Create A Post
 		<br>
 	</h1>
 
 <div class="container">
-	<form role="form" method="post" action="/postTrail">
+	<form role="form" method="post" action="/postTrail" onsubmit="return validatepostTrail()" name="postTrail" id="postTrail">
 		<div class="form-group">
 			<label for="picture"> Picture URL: </label>
   			<input type="text" class="form-control" name="picture" id="picture" placeholder="Enter Picture URL">
