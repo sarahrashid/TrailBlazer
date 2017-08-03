@@ -109,7 +109,8 @@ app.post('/postTrail', function (req, res) {
 				imageUrl: req.body.picture,
 				trailLocation: req.body.trailLocation,
 				trailDescription: req.body.trailDescription,
-				trailReccomendation: req.body.trailReccomendation
+				trailReccomendation: req.body.trailReccomendation,
+				date: Date.now()
 			};
 			collection.insert([postTrail], function (err, result) {
 				if (err){
@@ -149,7 +150,7 @@ app.get('/explorehikes', function(req,res) {
 			else {
 				console.log('Retrieving all trails from database');
 				var collection = db.collection('trails');
-				collection.find().toArray(function(err, result) {
+				collection.find().sort({date: -1}).toArray(function(err, result) {
 					if (err){
 						console.log(err);
 					}
