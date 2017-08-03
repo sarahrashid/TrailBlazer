@@ -2,6 +2,7 @@
 	background-color:  #ffffff;
 }
 
+
 #content {
 	margin-top: 4em;
 }
@@ -124,14 +125,18 @@ body {
 	text-shadow: #444 0 1px 1px;
 }
 
+
 p {
 	font-size: 25px;
 	font-family: helvetica;
 }
 
+
 ul {
 	list-style-type: none;
-	font-size: 14px;
+	font-size: 16px;
+	font-family: helvetica;
+	text-align:center;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
@@ -147,7 +152,7 @@ li a, .dropbtn {
 	color: white;
 	text-align: center;
 	font-family: helvetica;
-	padding: 14px 16px;
+	padding: 25px;
 	text-decoration: none;
 }
 
