@@ -6,9 +6,20 @@
 	margin-top: 4em;
 }
 
+#search {
+    width: 100%;
+    box-sizing: border-box;
+    color:black;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+}
+
 body {
 	text-align: left;
 	font-family: helvetica;
+	font-size: 18px;
 	background-position: left top;
 	background-attachment: fixed;
 }
@@ -63,6 +74,17 @@ body {
 	background-position: right;
 	background-attachment: fixed;
 }
+
+.displaypage {
+	color:white;
+	font-size:20px;
+	font-family: helvetica;
+	background-image:url('/img/PCT4.jpg');
+	background-size: 100%;
+	background-position: right;
+	background-attachment: fixed;
+}
+
 
 .myprofile {
 	font-size:20px;

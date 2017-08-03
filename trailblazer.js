@@ -69,7 +69,7 @@ app.post('/register', function(req,res) {
 				lastname: req.body.lastname, username: req.body.username,
 				email: req.body.email, pwd: req.body.pwd, gender: req.body.gender
 			};
-			collection.find({userame:signup.username}).toArray(function(err,result){
+			collection.find({username:signup.username}).toArray(function(err,result){
 				if(err){
 					console.log(err);
 				} 
@@ -192,7 +192,7 @@ app.post('/checklogin', function(req,res) {
 					res.cookie('username', a, {expire : new Date() + 9999});
 					res.redirect("/myprofile");
 				} else {
-					alert( "Please provide a valid password!" );
+					res.send( "Please provide a valid password!" );
 				}
 				db.close();
 			}); 
@@ -228,10 +228,6 @@ app.get('/myprofile', function(req,res) {
 	else {
 		res.render('login');
 	}
-});
-
-app.get('/myprofile',function(req,res){
-	res.render('myprofile');
 });
 
 app.get('/updateProfile',function(req,res){
@@ -282,6 +278,35 @@ app.post('/updateProfile', function(req,res) {
 		});
 	}
 });
+
+app.post('/search', function(req,res) {
+	var MongoClient = mongodb.MongoClient;
+	var url = 'mongodb://localhost:27017/trailblazer';
+	MongoClient.connect(url, function(err, db) {
+		if (err) {
+			console.log('Unable to connect to the Server:', err);
+		}
+		else {
+			console.log('Connected to server');
+			var collection = db.collection('trails');
+			var search = req.body.search; 
+			console.log(a);
+			collection.find({"trailLocation":search}).toArray(function(err, result) {
+				if (err){
+					console.log(err);
+				}
+				else {
+					res.render('displaypage', {"trails": result});
+				}
+			});
+		} 
+	}); 
+});
+
+app.get('/displaypage',function(req,res){
+	res.render('displaypage');
+});
+
 
 app.use(function(req, res, next){
 	console.log('Looking for URL : ' + req.url);
