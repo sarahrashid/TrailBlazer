@@ -1,0 +1,51 @@
+<body class="displaypage">
+
+<h1 style="text-align:center;font-size:50px;"> Explore Hikes 
+<br>
+</h1>
+
+<br>
+    
+<div class= "container">
+
+	<form role="form" method ="post" action ="/search"> 
+		<input type="text" id="search" name="search" placeholder="Search Posts by Location... use format Country, State, Nearest City">
+	</form> 
+		<br>
+
+	<form method="get" action="/postTrail">
+      <button type="submit" class="btn btn-default btn-sml btn-block" href="/postTrail" > Click here to post! </button>
+    </form>
+    <br>
+
+	{{#each trails}}
+	<div align="center" class="well">
+	     	<p style="font-size:10px; color:black; text-align:left;">
+	     	Displaying results for {{trailLocation}}
+	     	</p>
+	   		<p style="font-size:18px;color:black;"> 
+	     	Posted by <strong>{{username}}</strong>
+	      	<br>
+	      	<br>
+	      		<img style="width: 100%;" src="{{imageUrl}}">
+	    	<br>
+	      	<br>
+	       <strong> Trail Location: </strong>
+	       	<br>
+	      		{{trailLocation}}
+	      	<br>
+	      	<br>
+	      	<strong> Trail Description: </strong>
+	       	<br>
+	       		{{trailDescription}}
+	      	<br>
+	      	<br>
+	      	<strong> Reccomendations for others: </strong>
+	       	<br>
+	       		{{trailReccomendation}}
+		</p>
+	</div>
+	{{/each}}
+
+</div>
+</body>
