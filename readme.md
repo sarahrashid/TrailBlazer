@@ -1,1 +1,1 @@
-Trail Blazer is a website build by Nicole Wilkonson and Sarah Rashid, two Stanford SPCS students. 
+Trail Blazer is a website build by Nicole Wilkinson and Sarah Rashid, two Stanford SPCS students. The website's purpose: to provide beginning hikers with the means to taking safe backpacking trips, whether for a day or a week. Features include concise and comprehensible tips for backpacking, a featured hike, and hikes posted by other users.
