@@ -290,7 +290,7 @@ app.post('/search', function(req,res) {
 			console.log('Connected to server');
 			var collection = db.collection('trails');
 			var search = req.body.search; 
-			console.log(a);
+			console.log(search);
 			collection.find({"trailLocation":search}).toArray(function(err, result) {
 				if (err){
 					console.log(err);
